@@ -108,6 +108,8 @@ header.hero{padding:110px 0 80px;border-bottom:1px solid rgba(255,255,255,.08);
 .dl{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:999px;border:1px solid rgba(243,115,33,.5);color:var(--orange-soft);font-size:.82rem;font-weight:700}
 .dl::before{content:"↓";font-weight:800}
 .dl:hover{background:rgba(243,115,33,.12);text-decoration:none}
+.evi{margin-top:36px}
+.evi-note{color:var(--tx-mut);font-size:.85rem;margin:6px 0 14px}
 @media(max-width:640px){.stage{grid-template-columns:1fr;gap:2px}.proj{padding:22px 18px}}
 
 /* ============ 4. 학술 성과 ============ */
@@ -173,7 +175,7 @@ html.js .fade.visible{opacity:1;transform:none}
 
 <nav aria-label="주요 섹션">
   <div class="wrap">
-    <span class="logo">KIM JUNG-WOO<em>.</em></span>
+    <span class="logo">김정우</span>
     <ul>
       <li><a href="#competency">역량</a></li>
       <li><a href="#projects">프로젝트</a></li>
@@ -190,12 +192,11 @@ html.js .fade.visible{opacity:1;transform:none}
 <header class="hero">
   <div class="wrap">
     <p class="role">한화시스템 우주사업부 · 위성 구조설계 엔지니어 지원자</p>
-    <h1>지상에서 검증한 구조 기술이,<br>이제 <span class="pt">우주</span>를 향합니다.</h1>
+    <h1>구조를 설계하고, 해석으로 예측하고,<br><span class="pt">실험으로 검증</span>합니다.</h1>
     <p class="name">김정우 <span>— 격자 구조 설계 · 유한요소 구조/진동 해석 · 해석-시험 상관 검증</span></p>
     <p class="tagline">목표 성능으로부터 격자 기하를 역산하는 파라메트릭 역설계, 유한요소 기반 구조·진동 해석, 그리고 시제품 제작–계측–해석 상관까지. 개념설계부터 검증까지의 전 주기를 5개 기관 14개 연구과제에서 반복하며 게재 논문과 등록 특허로 남겼습니다.</p>
     <div class="btns">
-      <!-- TODO: 배포 시 index.html과 같은 위치에 '김정우_연구경력요약_한화시스템.pdf' 파일을 함께 업로드하세요. -->
-      <a class="btn primary" href="김정우_연구경력요약_한화시스템.pdf" download>이력서 PDF 다운로드</a>
+      <a class="btn primary" href="김정우_연구경력요약.pdf" download>이력서 PDF 다운로드</a>
       <a class="btn" href="#projects">대표 프로젝트 보기</a>
     </div>
     <div class="stats" role="list" aria-label="핵심 지표">
@@ -283,25 +284,7 @@ html.js .fade.visible{opacity:1;transform:none}
   <div class="wrap">
     <p class="eng fade">projects</p>
     <h2 class="fade">대표 프로젝트</h2>
-    <p class="sec-sub fade">최신순 정렬. 모든 프로젝트를 문제 → 설계 → 해석 → 실험 → 정량 결과의 동일한 구조로 정리했으며, 수치는 게재 논문·등록 특허 기준입니다.</p>
-
-    <article class="proj fade">
-      <div class="p-head">
-        <h3>어그제틱 격자 기판 압전 하베스터 — 기하 조율로 동특성 개선</h3>
-        <span class="p-meta">2024–2025 · 해군사관학교 해양연구소</span>
-      </div>
-      <p class="p-out">성과: Journal of the KNST 8(3), 495–502 (2025) 교신저자</p>
-      <dl>
-        <div class="stage"><dt>문제</dt><dd>저주파 진동 환경에서 캔틸레버형 압전 하베스터의 고유진동수가 가진 주파수 대역과 어긋나 출력이 저하</dd></div>
-        <div class="stage"><dt>설계</dt><dd>기판을 <b>어그제틱(음의 푸아송비) 격자 구조</b>로 재설계해 강성·질량 분포를 기하 파라미터로 조율</dd></div>
-        <div class="stage"><dt>해석</dt><dd>유한요소 모달 해석으로 격자 기하 변화에 따른 고유진동수 이동을 예측, 목표 대역에 정합</dd></div>
-        <div class="stage"><dt>실험</dt><dd>시제품 가진 실험으로 개방전압·출력 계측, 해석 예측과 비교</dd></div>
-        <div class="stage"><dt>정량 결과</dt><dd>고유진동수 <b>170 → 114 Hz</b> 조율 · 개방전압 <b>0.74 → 1.55 V</b> · 출력 <b>29.86 → 92.07 µW (약 3배 향상)</b></dd></div>
-      </dl>
-      <div class="dl-row" aria-label="관련 자료 다운로드">
-        <a class="dl" href="files/paper-knst-2025.pdf" download>논문 PDF (KNST 2025)</a>
-      </div>
-    </article>
+    <p class="sec-sub fade">공식 연구과제로 수행한 연구를 최신순으로 정리했습니다. 모든 프로젝트는 문제 → 설계 → 해석 → 실험 → 정량 결과의 동일한 구조이며, 수치는 게재 논문·등록 특허 기준, 과제 참여 이력은 하단의 기관 발급 확인서로 증빙됩니다.</p>
 
     <article class="proj fade">
       <div class="p-head">
@@ -316,10 +299,6 @@ html.js .fade.visible{opacity:1;transform:none}
         <div class="stage"><dt>실험</dt><dd>수조 음장 스캐닝으로 3차원 초점 형상 계측, 해석과 상관</dd></div>
         <div class="stage"><dt>정량 결과</dt><dd>유한 높이 <b>경계효과가 타원형 초점을 유발</b>함을 해석–실험 상관으로 검증 — 이상화 모델과 실제 유한 구조물의 차이를 정량 규명한 사례</dd></div>
       </dl>
-      <div class="dl-row" aria-label="관련 자료 다운로드">
-        <a class="dl" href="files/paper-prapplied-2025.pdf" download>논문 PDF (Phys. Rev. Applied 2025)</a>
-        <a class="dl" href="files/conf-phononics2025-quasi3d.pdf" download>학술대회 발표 (PHONONICS 2025)</a>
-      </div>
     </article>
 
     <article class="proj fade">
@@ -335,10 +314,6 @@ html.js .fade.visible{opacity:1;transform:none}
         <div class="stage"><dt>실험</dt><dd>수조에서 트랜스듀서–하이드로폰·3축 스테이지 음장 스캐닝, 해석 예측치와 정량 상관</dd></div>
         <div class="stage"><dt>정량 결과</dt><dd>구형: 80 kHz에서 <b>FWHM 0.6λ</b> · 타원체형: <b>60–160 kHz 광대역</b>에서 초점거리 1.5λ→0λ, FWHM 0.95λ→0.59λ 확인</dd></div>
       </dl>
-      <div class="dl-row" aria-label="관련 자료 다운로드">
-        <a class="dl" href="files/paper-mssp-2022.pdf" download>논문 PDF (MSSP 2022)</a>
-        <a class="dl" href="files/thesis-ms-2022.pdf" download>석사학위논문</a>
-      </div>
     </article>
 
     <article class="proj fade">
@@ -354,11 +329,18 @@ html.js .fade.visible{opacity:1;transform:none}
         <div class="stage"><dt>실험</dt><dd>시제품 제작 후 스피커–마이크·3축 리니어 스테이지 음장 스캐닝으로 집속 성능 계측</dd></div>
         <div class="stage"><dt>정량 결과</dt><dd><b>5–20 kHz 광대역 전방향 집속을 실험으로 검증</b> · 입사각 0–180° 전 구간 일정한 음압 이득(특허 등록: 미국 1건 + 동일 패밀리 한국 1건)</dd></div>
       </dl>
-      <div class="dl-row" aria-label="관련 자료 다운로드">
-        <a class="dl" href="files/paper-apl-2021.pdf" download>논문 PDF (APL 2021)</a>
-        <a class="dl" href="files/patent-us-12322372.pdf" download>미국특허 공보 (US 12,322,372 B2)</a>
-      </div>
     </article>
+
+    <div class="evi fade">
+      <h3 class="subhead">연구과제 참여 증빙</h3>
+      <p class="evi-note">기관에서 발급한 참여 확인 문서 원본입니다. 국방 관련 과제는 포함하지 않았습니다.</p>
+      <div class="dl-row" aria-label="연구과제 참여 증빙 다운로드" style="border-top:none;padding-top:0">
+        <a class="dl" href="files/cert-project-mmu.pdf" download>연구과제 참여 확인서 — 국립목포해양대학교</a>
+        <a class="dl" href="files/cert-project-gist.pdf" download>참여연구원 참여율 확인서 — 광주과학기술원</a>
+        <a class="dl" href="files/cert-ntis-etri.pdf" download>국가R&amp;D 참여과제 조회 — NTIS</a>
+        <a class="dl" href="files/cert-career-etri.pdf" download>경력증명서 — 한국전자통신연구원</a>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -482,7 +464,7 @@ html.js .fade.visible{opacity:1;transform:none}
       <p><span class="k">이메일</span><a href="mailto:goodhelper5799@gmail.com">goodhelper5799@gmail.com</a></p>
       <!-- TODO: 공개 웹사이트에 전화번호 노출 여부를 결정하세요. 노출을 원치 않으면 아래 줄을 삭제하면 됩니다. -->
       <p><span class="k">전화</span>010-8375-5799</p>
-      <p><span class="k">이력서</span><a href="김정우_연구경력요약_한화시스템.pdf" download>연구·경력 요약 PDF 다운로드</a></p>
+      <p><span class="k">이력서</span><a href="김정우_연구경력요약.pdf" download>연구·경력 요약 PDF 다운로드</a></p>
       <!-- TODO: Google Scholar·LinkedIn·GitHub 프로필이 있으면 아래 주석을 해제하고 URL을 채워주세요.
       <p><span class="k">Scholar</span><a href="#" rel="noopener">Google Scholar 프로필</a></p>
       -->
