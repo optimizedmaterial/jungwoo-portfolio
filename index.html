@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김정우 — 위성 구조설계 엔지니어 지원 포트폴리오</title>
+<meta name="description" content="격자·메타구조 설계, 유한요소 구조/진동 해석, 해석-시험 상관 검증. 한화시스템 우주사업부 위성 구조설계 엔지니어 지원 포트폴리오.">
+<!-- 외부 의존성: Pretendard 웹폰트 CDN 1건만 사용 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+/* ============ 디자인 토큰 — 한화시스템 우주사업부 채용 사이트(hanwhasystems-space.com) CI 준용 ============ */
+:root{
+  --bg:#000000;                     /* 순수 블랙 배경 (한화 채용 사이트 동일) */
+  --card:rgba(255,255,255,.05);     /* 카드: 화이트 5% */
+  --card2:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.14);
+  --tx:rgba(255,255,255,.92);       /* 오프화이트 본문 */
+  --tx-mut:rgba(255,255,255,.62);   /* 보조 텍스트 (블랙 위 대비 ≈ 11:1) */
+  --orange:#F37321;                 /* 한화 오렌지 (공식 CI 컬러) */
+  --orange-soft:#F98E4B;            /* 블랙 위 소형 텍스트용 밝은 톤 (대비 ≈ 7:1) */
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Pretendard','Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);color:var(--tx);
+  line-height:1.7;font-size:16px;
+  word-break:keep-all;overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--orange-soft);text-decoration:none}
+a:hover,a:focus-visible{text-decoration:underline}
+img{max-width:100%;display:block}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+section{padding:88px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+
+/* 섹션 헤더 — 한화 채용 사이트의 영문 소문자 라벨 + 대형 국문 타이틀 패턴 */
+.eng{color:var(--orange);font-weight:700;font-size:.85rem;letter-spacing:.22em;text-transform:lowercase;margin-bottom:10px}
+h2{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.3;margin-bottom:8px}
+.sec-sub{color:var(--tx-mut);font-size:.95rem;margin-bottom:40px;max-width:640px}
+
+/* ============ 스킵 링크 (접근성) ============ */
+.skip{position:absolute;left:-9999px;top:0;background:var(--orange);color:#fff;padding:8px 14px;border-radius:6px;z-index:100}
+.skip:focus{left:12px;top:12px}
+
+/* ============ 상단 내비게이션 ============ */
+nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+nav .logo{font-weight:800;font-size:.95rem;color:var(--tx);letter-spacing:.04em}
+nav .logo em{color:var(--orange);font-style:normal}
+nav ul{display:flex;gap:22px;list-style:none}
+nav ul a{color:var(--tx-mut);font-size:.85rem;font-weight:600}
+nav ul a:hover{color:#fff;text-decoration:none}
+@media(max-width:640px){nav ul{display:none}}
+
+/* ============ 1. Hero ============ */
+header.hero{padding:110px 0 80px;border-bottom:1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(ellipse 60% 45% at 70% 8%, rgba(243,115,33,.13), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 15% 95%, rgba(243,115,33,.06), transparent 70%);
+}
+.hero .role{color:var(--orange);font-weight:700;font-size:.9rem;letter-spacing:.06em;margin-bottom:18px}
+.hero h1{font-size:clamp(2rem,5.2vw,3.3rem);font-weight:800;letter-spacing:-.03em;line-height:1.28;margin-bottom:10px}
+.hero h1 .pt{color:var(--orange)}
+.hero .name{font-size:1.05rem;font-weight:700;color:var(--tx);margin-bottom:14px}
+.hero .name span{color:var(--tx-mut);font-weight:400}
+.hero .tagline{color:var(--tx-mut);font-size:1.02rem;max-width:660px;margin-bottom:34px}
+.hero .btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:46px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:999px;font-weight:700;font-size:.92rem;border:1px solid var(--line);color:var(--tx);transition:transform .15s ease,background .15s ease}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:#fff}
+.btn.primary:hover{background:#FF8434}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.10);border-radius:var(--radius);overflow:hidden}
+.stat{background:#0A0A0A;padding:20px 20px}
+.stat b{display:block;font-size:1.28rem;letter-spacing:-.02em;margin-bottom:3px}
+.stat b i{font-style:normal;color:var(--orange)}
+.stat span{color:var(--tx-mut);font-size:.8rem;line-height:1.5;display:block}
+
+/* ============ 2. 역량 매트릭스 ============ */
+.matrix{display:flex;flex-direction:column;gap:14px}
+.mrow{display:grid;grid-template-columns:250px 1fr;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.mreq{padding:22px 22px;background:var(--card2);border-right:1px solid var(--line)}
+.mreq h3{font-size:1rem;line-height:1.45;margin-bottom:10px;font-weight:700}
+.mreq .src{display:block;color:var(--tx-mut);font-size:.72rem;font-weight:400;margin-top:6px}
+.mev{padding:22px 22px;font-size:.92rem}
+.mev ul{list-style:none}
+.mev li{padding-left:16px;position:relative;margin-bottom:8px;color:var(--tx-mut)}
+.mev li::before{content:"";position:absolute;left:0;top:.68em;width:6px;height:2px;background:var(--orange)}
+.mev li b{color:var(--tx)}
+.badge{display:inline-block;font-size:.72rem;font-weight:800;padding:3px 12px;border-radius:999px;border:1px solid}
+.b-ok{color:#8CD9A8;border-color:rgba(140,217,168,.55)}
+.b-mid{color:#EFC56A;border-color:rgba(239,197,106,.55)}
+.b-todo{color:#A9C4E8;border-color:rgba(169,196,232,.55)}
+@media(max-width:680px){.mrow{grid-template-columns:1fr}.mreq{border-right:none;border-bottom:1px solid var(--line)}}
+
+/* ============ 3. 대표 프로젝트 ============ */
+.proj{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 30px 24px;margin-bottom:24px}
+.proj .p-head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.proj h3{font-size:1.18rem;font-weight:700;letter-spacing:-.01em;line-height:1.45}
+.proj .p-meta{color:var(--tx-mut);font-size:.8rem;white-space:nowrap;padding-top:6px}
+.proj .p-out{color:var(--orange-soft);font-size:.86rem;font-weight:700;margin-bottom:20px}
+.stage{display:grid;grid-template-columns:96px 1fr;gap:0 16px;border-top:1px solid rgba(255,255,255,.09);padding:11px 0;font-size:.91rem}
+.stage dt{color:var(--orange);font-weight:800;font-size:.79rem;letter-spacing:.05em;padding-top:3px}
+.stage dd{color:var(--tx-mut)}
+.stage dd b{color:var(--tx)}
+.dl-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.09)}
+.dl{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:999px;border:1px solid rgba(243,115,33,.5);color:var(--orange-soft);font-size:.82rem;font-weight:700}
+.dl::before{content:"↓";font-weight:800}
+.dl:hover{background:rgba(243,115,33,.12);text-decoration:none}
+@media(max-width:640px){.stage{grid-template-columns:1fr;gap:2px}.proj{padding:22px 18px}}
+
+/* ============ 4. 학술 성과 ============ */
+.pubs{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
+.pub{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px}
+.pub .p-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;padding:2px 10px;border-radius:4px}
+.t-jr{background:rgba(255,255,255,.09);color:var(--tx-mut)}
+.t-role{background:rgba(243,115,33,.18);color:var(--orange-soft)}
+.t-hw{background:var(--orange);color:#fff}
+.pub h3{font-size:1rem;font-weight:700;line-height:1.5;margin-bottom:5px}
+.pub .auth{color:var(--tx-mut);font-size:.84rem}
+.pub .auth b{color:var(--tx)}
+.pub .num{color:var(--tx-mut);font-size:.84rem;margin-top:4px}
+.subhead{font-size:1.12rem;font-weight:700;margin:44px 0 16px}
+.subhead::before{content:"";display:inline-block;width:18px;height:3px;background:var(--orange);margin-right:10px;vertical-align:middle}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.mini .pub h3{font-size:.93rem}
+
+/* ============ 5. 기술 스택 ============ */
+.stack{display:flex;flex-direction:column;gap:12px}
+.tool{display:grid;grid-template-columns:210px 1fr;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;font-size:.92rem}
+.tool b{font-size:.96rem}
+.tool span{color:var(--tx-mut)}
+@media(max-width:640px){.tool{grid-template-columns:1fr;gap:4px}}
+
+/* ============ 6. 연락처 ============ */
+footer{padding:88px 0 100px}
+.contact{display:flex;flex-direction:column;gap:12px;font-size:.96rem}
+.contact .k{display:inline-block;width:96px;color:var(--tx-mut);font-size:.85rem;font-weight:700}
+.foot-note{margin-top:48px;color:rgba(255,255,255,.45);font-size:.78rem;border-top:1px solid rgba(255,255,255,.08);padding-top:20px}
+
+/* ============ 스크롤 페이드인 (절제된 모션) ============ */
+/* JS 미동작 환경에서도 콘텐츠가 보이도록 html.js 하위에서만 숨김 적용 */
+html.js .fade{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+html.js .fade.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  html.js .fade{opacity:1;transform:none;transition:none}
+}
+
+/* ============ 인쇄 (A4) ============ */
+@media print{
+  @page{size:A4;margin:14mm}
+  :root{--bg:#fff;--card:#fff;--card2:#f6f6f6;--line:#ccc;--tx:#111;--tx-mut:#444;--orange:#D95F0E;--orange-soft:#C4500A}
+  body{background:#fff;color:#111;font-size:10pt}
+  nav,.btns,.skip{display:none}
+  header.hero{background:none}
+  section,header.hero{padding:16px 0;border-bottom:1px solid #ccc}
+  .proj,.pub,.mrow,.tool,.stat{break-inside:avoid;border-color:#ccc}
+  .stat{background:#fff}
+  html.js .fade{opacity:1;transform:none;transition:none}
+  a{color:#111}
+  .t-hw{background:#fff;color:#C4500A;border:1px solid #C4500A}
+  .btn.primary{display:none}
+  .dl-row{display:none}
+  .foot-note{color:#666}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문 바로가기</a>
+
+<nav aria-label="주요 섹션">
+  <div class="wrap">
+    <span class="logo">KIM JUNG-WOO<em>.</em></span>
+    <ul>
+      <li><a href="#competency">역량</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#publications">학술 성과</a></li>
+      <li><a href="#stack">기술 스택</a></li>
+      <li><a href="#contact">연락처</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================================================
+     1. Hero
+============================================================ -->
+<header class="hero">
+  <div class="wrap">
+    <p class="role">한화시스템 우주사업부 · 위성 구조설계 엔지니어 지원자</p>
+    <h1>지상에서 검증한 구조 기술이,<br>이제 <span class="pt">우주</span>를 향합니다.</h1>
+    <p class="name">김정우 <span>— 격자 구조 설계 · 유한요소 구조/진동 해석 · 해석-시험 상관 검증</span></p>
+    <p class="tagline">목표 성능으로부터 격자 기하를 역산하는 파라메트릭 역설계, 유한요소 기반 구조·진동 해석, 그리고 시제품 제작–계측–해석 상관까지. 개념설계부터 검증까지의 전 주기를 5개 기관 14개 연구과제에서 반복하며 게재 논문과 등록 특허로 남겼습니다.</p>
+    <div class="btns">
+      <!-- TODO: 배포 시 index.html과 같은 위치에 '김정우_연구경력요약_한화시스템.pdf' 파일을 함께 업로드하세요. -->
+      <a class="btn primary" href="김정우_연구경력요약_한화시스템.pdf" download>이력서 PDF 다운로드</a>
+      <a class="btn" href="#projects">대표 프로젝트 보기</a>
+    </div>
+    <div class="stats" role="list" aria-label="핵심 지표">
+      <div class="stat" role="listitem"><b>SCIE 4편 <i>+</i> KCI 1편</b><span>SCIE 제1저자 3편·공저자 1편 · KCI 1편</span></div>
+      <div class="stat" role="listitem"><b>등록특허 3건</b><span>미국 1건 · 한국 2건</span></div>
+      <div class="stat" role="listitem"><b>연구과제 14건</b><span>5개 기관 참여</span></div>
+      <div class="stat" role="listitem"><b>경력 5년</b><span>석사 2년 + 교수사관(군복무) 3년</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     2. 역량 매트릭스 — 채용공고 요구사항 대비 증거
+============================================================ -->
+<section id="competency">
+  <div class="wrap">
+    <p class="eng fade">competency</p>
+    <h2 class="fade">직무 요구사항, 근거로 답합니다</h2>
+    <p class="sec-sub fade">위성 구조설계 엔지니어 채용공고의 자격요건 항목별 보유 근거입니다. 미충족 항목은 학습 계획으로 정직하게 표기했습니다.</p>
+    <div class="matrix">
+
+      <div class="mrow fade">
+        <div class="mreq"><h3>구조설계·구조해석 실무 경력</h3><span class="badge b-ok">보유</span><span class="src">Basic Qualifications</span></div>
+        <div class="mev"><ul>
+          <li><b>파라메트릭 역설계 프로세스</b> — 목표 유효물성(밀도·강성·굴절률)에서 격자 기하를 역산, 5개 과제·5편 논문에서 반복 수행</li>
+          <li>SUS304 금속·플라스틱 격자 구조물의 형상 설계, 부피 제약 하 형상 변형(변환광학 기반 타원체화), 지지대 포함 3차원 조립 구조 설계</li>
+          <li>시제품 제작 → 계측 → 해석 예측치와 정량 비교(해석-시험 상관)를 5개 연구에서 완결</li>
+        </ul></div>
+      </div>
+
+      <div class="mrow fade">
+        <div class="mreq"><h3>기계공학 전공</h3><span class="badge b-ok">보유</span><span class="src">Basic Qualifications</span></div>
+        <div class="mev"><ul>
+          <li><b>광주과학기술원(GIST) 기계공학 석사</b> — 평점 3.90/4.5 (백분위 93.1) · 다중물리해석과 구조최적화, 고급진동학, 파동물리 이수</li>
+          <li>국립목포해양대 기관공학 학사 — 평점 4.10/4.5 · 재료역학, 열역학, 유체역학, 금속재료공학, 기계제도 및 CAD 이수</li>
+        </ul></div>
+      </div>
+
+      <div class="mrow fade">
+        <div class="mreq"><h3>구조해석 SW·3D CAD 활용<br>(HyperWorks / NX / Creo)</h3><span class="badge b-mid">일부 보유</span><span class="src">Basic Qualifications</span></div>
+        <div class="mev"><ul>
+          <li><b>COMSOL Multiphysics (고급)</b> — 고유주파수(모달)·음향-구조 연성·주파수영역 다물리 연성 해석, 밴드구조 계산, S-parameter retrieval 유효물성 산출, PML 경계 과도해석</li>
+          <li>MATLAB·Python으로 수백 케이스 파라메트릭 반복해석 자동화·후처리 · AutoCAD 기반 기계제도 이수 및 시제품 도면 작성</li>
+          <li><span class="badge b-todo">학습 계획</span> HyperWorks·NX·Creo — 요소 정식화·경계조건·수렴성 등 FEA 원리에 숙련되어 있어 도구 전환 학습을 입사 전후 단기 목표로 설정</li>
+        </ul></div>
+      </div>
+
+      <div class="mrow fade">
+        <div class="mreq"><h3>위성·발사체·항공기 구조물<br>개발 프로젝트 경험</h3><span class="badge b-todo">학습 계획</span><span class="src">Preferred Qualifications</span></div>
+        <div class="mev"><ul>
+          <li>위성·발사체 구조물 직접 설계 경험은 없습니다 — 입사 후 최우선 학습 영역으로 설정</li>
+          <li>인접 도메인 협업 근거: <b>한국항공우주연구원(KARI)</b>과 SCIE 공동연구 수행 (Phys. Rev. Applied 2025)</li>
+          <li><b>한화시스템 위성사업부</b> 연구인력과 SCIE 공저 논문 게재 (Applied Sciences 2022)</li>
+        </ul></div>
+      </div>
+
+      <div class="mrow fade">
+        <div class="mreq"><h3>ECSS·NASA 구조 설계 기준<br>적용 경험</h3><span class="badge b-todo">학습 계획</span><span class="src">Preferred Qualifications</span></div>
+        <div class="mev"><ul>
+          <li>ECSS·NASA 표준의 직접 적용 경험은 없습니다 — 표준 문서 학습 계획 수립</li>
+          <li>유관 근거: 국방 R&amp;D 2건 수행 — 미래 해군 함정 인공지능 학습 요소 연구(한화시스템 발주, 2024.01–2024.12), 룬샷 경진대회 기획연구(국방과학연구소, 2025.03–2025.06)에서 군 요구사항 정의·보안·품질 절차 준수 경험</li>
+          <li>해군 장교(중위, 함정 병과) 3년 복무 — 규격·절차 기반 업무 문화 체득</li>
+        </ul></div>
+      </div>
+
+      <div class="mrow fade">
+        <div class="mreq"><h3>우주용 경량 구조재료<br>(알루미늄 합금·CFRP) 설계·시험</h3><span class="badge b-mid">일부 보유</span><span class="src">Preferred Qualifications</span></div>
+        <div class="mev"><ul>
+          <li>내부가 비어 있는 격자(lattice) 단위구조로 유효 밀도·강성을 조절하는 <b>경량 금속 격자 구조 설계·제작·시험</b> 다수 수행 (SUS304·플라스틱)</li>
+          <li>어그제틱(음의 푸아송비) 격자 구조를 압전 하베스터 기판에 적용해 동특성 조율 (KNST 2025)</li>
+          <li><span class="badge b-todo">학습 계획</span> 알루미늄 합금·CFRP 복합재·허니콤 샌드위치 등 우주용 구조 재료</li>
+        </ul></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. 대표 프로젝트 4개 (최신순) — 문제→설계→해석→실험→정량 결과
+============================================================ -->
+<section id="projects">
+  <div class="wrap">
+    <p class="eng fade">projects</p>
+    <h2 class="fade">대표 프로젝트</h2>
+    <p class="sec-sub fade">최신순 정렬. 모든 프로젝트를 문제 → 설계 → 해석 → 실험 → 정량 결과의 동일한 구조로 정리했으며, 수치는 게재 논문·등록 특허 기준입니다.</p>
+
+    <article class="proj fade">
+      <div class="p-head">
+        <h3>어그제틱 격자 기판 압전 하베스터 — 기하 조율로 동특성 개선</h3>
+        <span class="p-meta">2024–2025 · 해군사관학교 해양연구소</span>
+      </div>
+      <p class="p-out">성과: Journal of the KNST 8(3), 495–502 (2025) 교신저자</p>
+      <dl>
+        <div class="stage"><dt>문제</dt><dd>저주파 진동 환경에서 캔틸레버형 압전 하베스터의 고유진동수가 가진 주파수 대역과 어긋나 출력이 저하</dd></div>
+        <div class="stage"><dt>설계</dt><dd>기판을 <b>어그제틱(음의 푸아송비) 격자 구조</b>로 재설계해 강성·질량 분포를 기하 파라미터로 조율</dd></div>
+        <div class="stage"><dt>해석</dt><dd>유한요소 모달 해석으로 격자 기하 변화에 따른 고유진동수 이동을 예측, 목표 대역에 정합</dd></div>
+        <div class="stage"><dt>실험</dt><dd>시제품 가진 실험으로 개방전압·출력 계측, 해석 예측과 비교</dd></div>
+        <div class="stage"><dt>정량 결과</dt><dd>고유진동수 <b>170 → 114 Hz</b> 조율 · 개방전압 <b>0.74 → 1.55 V</b> · 출력 <b>29.86 → 92.07 µW (약 3배 향상)</b></dd></div>
+      </dl>
+      <div class="dl-row" aria-label="관련 자료 다운로드">
+        <a class="dl" href="files/paper-knst-2025.pdf" download>논문 PDF (KNST 2025)</a>
+      </div>
+    </article>
+
+    <article class="proj fade">
+      <div class="p-head">
+        <h3>Quasi-3D GRIN 렌즈의 수중 집속 — 유한 높이 경계효과 규명</h3>
+        <span class="p-meta">2022–2025 · 한화오션·POSTECH·KARI 공동연구</span>
+      </div>
+      <p class="p-out">성과: Physical Review Applied 23, 064057 (2025) 공동 제1저자 · PHONONICS 2025 발표</p>
+      <dl>
+        <div class="stage"><dt>문제</dt><dd>2차원 GRIN 렌즈 설계를 유한 높이로 적층해 3차원화하면 이상화 모델에 없는 파면 왜곡이 발생 — 원인 규명과 정량 예측이 필요</dd></div>
+        <div class="stage"><dt>설계</dt><dd>SUS304 원기둥 메타원자를 <b>15층 적층</b>한 quasi-3D GRIN 렌즈 설계</dd></div>
+        <div class="stage"><dt>해석</dt><dd>밴드구조·블로흐 모드·150 kHz 등주파수면(EFC) 해석으로 이방성 파면 변환 메커니즘 규명 · 전체 구조 음압장 예측</dd></div>
+        <div class="stage"><dt>실험</dt><dd>수조 음장 스캐닝으로 3차원 초점 형상 계측, 해석과 상관</dd></div>
+        <div class="stage"><dt>정량 결과</dt><dd>유한 높이 <b>경계효과가 타원형 초점을 유발</b>함을 해석–실험 상관으로 검증 — 이상화 모델과 실제 유한 구조물의 차이를 정량 규명한 사례</dd></div>
+      </dl>
+      <div class="dl-row" aria-label="관련 자료 다운로드">
+        <a class="dl" href="files/paper-prapplied-2025.pdf" download>논문 PDF (Phys. Rev. Applied 2025)</a>
+        <a class="dl" href="files/conf-phononics2025-quasi3d.pdf" download>학술대회 발표 (PHONONICS 2025)</a>
+      </div>
+    </article>
+
+    <article class="proj fade">
+      <div class="p-head">
+        <h3>광대역·광각 수중 초음파 이미징용 금속 메타물질 렌즈 — 변환광학 기반 부피 축소</h3>
+        <span class="p-meta">2020–2022 · GIST 석사연구</span>
+      </div>
+      <p class="p-out">성과: Mechanical Systems and Signal Processing 179, 109374 (2022) 공동 제1저자 · 석사학위논문</p>
+      <dl>
+        <div class="stage"><dt>문제</dt><dd>수중 초음파 이미징용 구형 렌즈는 장착 공간 제약이 크고, 광대역·광각 성능을 동시에 만족하는 금속 구조 렌즈 설계가 필요</dd></div>
+        <div class="stage"><dt>설계</dt><dd>스테인리스강(SUS304) 격자 단위구조로 <b>구형·타원체형 렌즈 2종</b> 설계 · 변환광학(transformation optics) 좌표 변환으로 성능을 유지하며 부피를 축소한 타원체화 수행 · 지지대 포함 3차원 조립 구조 설계</dd></div>
+        <div class="stage"><dt>해석</dt><dd>밴드구조(분산선도) 계산과 S-parameter retrieval로 단위구조 유효물성 산출 · 주파수영역 음향-구조 연성 해석으로 집속 성능 예측</dd></div>
+        <div class="stage"><dt>실험</dt><dd>수조에서 트랜스듀서–하이드로폰·3축 스테이지 음장 스캐닝, 해석 예측치와 정량 상관</dd></div>
+        <div class="stage"><dt>정량 결과</dt><dd>구형: 80 kHz에서 <b>FWHM 0.6λ</b> · 타원체형: <b>60–160 kHz 광대역</b>에서 초점거리 1.5λ→0λ, FWHM 0.95λ→0.59λ 확인</dd></div>
+      </dl>
+      <div class="dl-row" aria-label="관련 자료 다운로드">
+        <a class="dl" href="files/paper-mssp-2022.pdf" download>논문 PDF (MSSP 2022)</a>
+        <a class="dl" href="files/thesis-ms-2022.pdf" download>석사학위논문</a>
+      </div>
+    </article>
+
+    <article class="proj fade">
+      <div class="p-head">
+        <h3>3차원 음향 룬버그 메타렌즈 — 격자 기둥 단위구조 설계</h3>
+        <span class="p-meta">2019–2021 · 목포해양대 / ETRI</span>
+      </div>
+      <p class="p-out">성과: Applied Physics Letters 118, 091902 (2021) 제1저자 · 미국특허 US 12,322,372 B2 등록</p>
+      <dl>
+        <div class="stage"><dt>문제</dt><dd>전방향 음향 집속에는 굴절률이 반경 방향으로 연속 변하는 룬버그 렌즈가 필요하지만, 단일 재료 가공으로는 연속 굴절률 구배를 구현할 수 없음</dd></div>
+        <div class="stage"><dt>설계</dt><dd>직경 120 mm 렌즈를 <b>격자 기둥형 단위구조 수천 개</b>로 이산화하고, n(r)=n₀√(2−(r/R)²)를 만족하도록 위치별 단위구조 채움률을 역산하는 파라메트릭 설계 · 면적비-굴절률 관계식 n=√(A/(A−S)) 정립(특허 청구항)</dd></div>
+        <div class="stage"><dt>해석</dt><dd>COMSOL 음향-구조 연성 해석으로 단위구조별 유효 굴절률 검증 후 전체 렌즈 음압장 예측</dd></div>
+        <div class="stage"><dt>실험</dt><dd>시제품 제작 후 스피커–마이크·3축 리니어 스테이지 음장 스캐닝으로 집속 성능 계측</dd></div>
+        <div class="stage"><dt>정량 결과</dt><dd><b>5–20 kHz 광대역 전방향 집속을 실험으로 검증</b> · 입사각 0–180° 전 구간 일정한 음압 이득(특허 등록: 미국 1건 + 동일 패밀리 한국 1건)</dd></div>
+      </dl>
+      <div class="dl-row" aria-label="관련 자료 다운로드">
+        <a class="dl" href="files/paper-apl-2021.pdf" download>논문 PDF (APL 2021)</a>
+        <a class="dl" href="files/patent-us-12322372.pdf" download>미국특허 공보 (US 12,322,372 B2)</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     4. 학술 성과 — 논문 5 · 등록특허 3 · 학술대회 3
+============================================================ -->
+<section id="publications">
+  <div class="wrap">
+    <p class="eng fade">publications</p>
+    <h2 class="fade">학술 성과</h2>
+    <p class="sec-sub fade">학술지 논문 5편(SCIE 4·KCI 1) · 등록특허 3건(미국 1·한국 2) · 학술대회 발표 3건</p>
+
+    <div class="pubs">
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">KCI · 2025</span><span class="tag t-role">교신저자</span></div>
+        <h3>기하학적 구조 조율을 통한 압전 하베스터 성능 향상</h3>
+        <p class="auth">S.-J. Lee, <b>J.-W. Kim*</b> — <i>Journal of the KNST</i> 8(3), 495–502 (2025)</p>
+        <p class="num"><a href="https://doi.org/10.31818/JKNST.2025.9.8.3.495" rel="noopener">DOI 10.31818/JKNST.2025.9.8.3.495</a> · <a href="files/paper-knst-2025.pdf" download>논문 PDF ↓</a></p>
+      </article>
+
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">SCIE · 2025</span><span class="tag t-role">공동 제1저자</span><span class="tag t-hw">한화오션 공동연구</span></div>
+        <h3>Underwater sound focusing via quasi-three-dimensional gradient-index lens</h3>
+        <p class="auth">S.-J. Lee†, <b>J.-W. Kim†</b>, S.-H. Kim, D. Lee, B. Oh, J. Rho, G. Hwang — <i>Physical Review Applied</i> 23, 064057 (2025)</p>
+        <p class="num"><a href="https://doi.org/10.1103/5z2y-d2c3" rel="noopener">DOI 10.1103/5z2y-d2c3</a> · <a href="files/paper-prapplied-2025.pdf" download>논문 PDF ↓</a> · 한화오션 특수선 방산기술연구원·POSTECH·KARI 공동</p>
+      </article>
+
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">SCIE · 2022</span><span class="tag t-role">공저자</span><span class="tag t-hw">한화시스템 위성사업부 공저</span></div>
+        <h3>Horizontal Active Noise Control Based on Wave Field Reproduction Using a Single Circular Array in 3D Space</h3>
+        <p class="auth">S. Ha, <b>J. Kim</b>, H.-g. Kim(한화시스템 위성사업부), S. Wang — <i>Applied Sciences</i> 12(20), 10245 (2022)</p>
+        <p class="num"><a href="https://doi.org/10.3390/app122010245" rel="noopener">DOI 10.3390/app122010245</a> · <a href="files/paper-applsci-2022.pdf" download>논문 PDF ↓</a></p>
+      </article>
+
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">SCIE · 2022</span><span class="tag t-role">공동 제1저자</span></div>
+        <h3>Three-dimensional acoustic metamaterial Luneburg lenses for broadband and wide-angle underwater ultrasound imaging</h3>
+        <p class="auth"><b>J.-W. Kim†</b>, G. Hwang†, S.-J. Lee, S.-H. Kim, S. Wang — <i>Mechanical Systems and Signal Processing</i> 179, 109374 (2022)</p>
+        <p class="num"><a href="https://doi.org/10.1016/j.ymssp.2022.109374" rel="noopener">DOI 10.1016/j.ymssp.2022.109374</a> · <a href="files/paper-mssp-2022.pdf" download>논문 PDF ↓</a></p>
+      </article>
+
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">SCIE · 2021</span><span class="tag t-role">제1저자</span></div>
+        <h3>Acoustic imaging by three-dimensional acoustic Luneburg meta-lens with lattice columns</h3>
+        <p class="auth"><b>J.-W. Kim</b>, S.-J. Lee, J.-Y. Jo, S. Wang, S.-H. Kim — <i>Applied Physics Letters</i> 118, 091902 (2021)</p>
+        <p class="num"><a href="https://doi.org/10.1063/5.0037600" rel="noopener">DOI 10.1063/5.0037600</a> · <a href="files/paper-apl-2021.pdf" download>논문 PDF ↓</a></p>
+      </article>
+    </div>
+
+    <h3 class="subhead fade">등록특허</h3>
+    <div class="mini">
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">미국 · 2025</span></div>
+        <h3>US 12,322,372 B2 — Acoustic Luneburg Meta Lens and Design Method Thereof</h3>
+        <p class="auth">발명자 G. Hwang, S.-H. Kim, <b>J.-W. Kim</b> · 출원인 ETRI·목포해양대 산학협력단</p>
+        <p class="num"><a href="files/patent-us-12322372.pdf" download>특허 공보 PDF ↓</a></p>
+      </article>
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">한국 · 2024</span></div>
+        <h3>KR 10-2678972 — 음향 룬버그 메타 렌즈 및 이의 설계 방법</h3>
+        <p class="auth">발명자 황건, 김상훈, <b>김정우</b> · 위 미국특허와 동일 패밀리</p>
+        <p class="num"><a href="files/patent-kr-10-2678972.pdf" download>특허 공보 PDF ↓</a></p>
+      </article>
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">한국 · 2022</span></div>
+        <h3>KR 10-2408136 — 음향렌즈를 이용한 음향 수신 장치</h3>
+        <p class="auth">발명자 김상훈, 이희배, <b>김정우</b> · 출원인 (유)에이치지티·목포해양대 산학협력단</p>
+        <p class="num"><a href="files/patent-kr-10-2408136.pdf" download>특허 공보 PDF ↓</a></p>
+      </article>
+    </div>
+
+    <h3 class="subhead fade">학술대회 발표</h3>
+    <div class="mini">
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">국제 · 2025</span><span class="tag t-role">제1저자</span></div>
+        <h3>Quasi-3D Phononic Crystal GRIN Lens for Anisotropic Underwater Acoustic Focusing</h3>
+        <p class="auth">PHONONICS 2025, Seoul, pp. 302–303 · <a href="files/conf-phononics2025-quasi3d.pdf" download>초록 PDF ↓</a></p>
+      </article>
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">국제 · 2025</span><span class="tag t-role">공저자·발표자</span></div>
+        <h3>Underwater Ultrasound Imaging via Metamaterial Lenses Composed of Phononic Crystals</h3>
+        <p class="auth">PHONONICS 2025, Seoul, pp. 270–271 · <a href="files/conf-phononics2025-imaging.pdf" download>초록 PDF ↓</a></p>
+      </article>
+      <article class="pub fade">
+        <div class="p-tags"><span class="tag t-jr">국내 · 2023</span><span class="tag t-role">제1저자</span></div>
+        <h3>구배 굴절률 메타물질을 이용한 음파 조작</h3>
+        <p class="auth">2023 대한전자공학회 하계학술대회, pp. 2649–2651 · <a href="files/conf-ieie-2023.pdf" download>논문 PDF ↓</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. 기술 스택 — 수행 경험 한 줄씩 (숙련도 바 없음)
+============================================================ -->
+<section id="stack">
+  <div class="wrap">
+    <p class="eng fade">skill</p>
+    <h2 class="fade">기술 스택</h2>
+    <p class="sec-sub fade">숙련도 그래프 대신, 각 도구로 실제 수행한 일을 한 줄로 적었습니다.</p>
+    <div class="stack">
+      <div class="tool fade"><b>COMSOL Multiphysics</b><span>모달·음향-구조 연성·주파수영역 다물리 해석, 밴드구조 계산, S-parameter retrieval, PML 과도해석을 5편의 게재 논문에서 수행</span></div>
+      <div class="tool fade"><b>MATLAB</b><span>수백 케이스 파라메트릭 반복해석 자동화, 계측 데이터 후처리 및 해석-실험 상관 분석에 사용</span></div>
+      <div class="tool fade"><b>Python</b><span>설계 탐색 스크립트와 실험 데이터 처리 파이프라인 작성에 사용</span></div>
+      <div class="tool fade"><b>AutoCAD 기반 기계제도</b><span>학부 전공(기계제도 및 CAD) 이수, 시제품 제작용 도면 작성 경험</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     6. 연락처
+============================================================ -->
+<footer id="contact">
+  <div class="wrap">
+    <p class="eng fade">contact</p>
+    <h2 class="fade">연락처</h2>
+    <div class="contact fade" style="margin-top:18px">
+      <p><span class="k">이메일</span><a href="mailto:goodhelper5799@gmail.com">goodhelper5799@gmail.com</a></p>
+      <!-- TODO: 공개 웹사이트에 전화번호 노출 여부를 결정하세요. 노출을 원치 않으면 아래 줄을 삭제하면 됩니다. -->
+      <p><span class="k">전화</span>010-8375-5799</p>
+      <p><span class="k">이력서</span><a href="김정우_연구경력요약_한화시스템.pdf" download>연구·경력 요약 PDF 다운로드</a></p>
+      <!-- TODO: Google Scholar·LinkedIn·GitHub 프로필이 있으면 아래 주석을 해제하고 URL을 채워주세요.
+      <p><span class="k">Scholar</span><a href="#" rel="noopener">Google Scholar 프로필</a></p>
+      -->
+    </div>
+    <p class="foot-note">본 페이지의 모든 수치와 성과는 게재 논문·등록 특허·기관 발급 증명서(연구실적증명서, 경력증명서, 참여율 확인서)에 근거합니다. 국방 관련 과제는 과제명·발주기관·기간만 기재했습니다.</p>
+  </div>
+</footer>
+
+<script>
+/* 스크롤 페이드인 — 브라우저 저장소(localStorage 등) 미사용 */
+(function(){
+  document.documentElement.classList.add('js');
+  var els=document.querySelectorAll('.fade');
+  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(el){el.classList.add('visible');});return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+    });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el);});
+})();
+
+</script>
+</body>
+</html>
